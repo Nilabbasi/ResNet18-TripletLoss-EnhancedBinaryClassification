@@ -39,13 +39,13 @@ L_{\text{triplet}} = \max(0, d_{\text{anchor, positive}} - d_{\text{anchor, nega
 $$
 
  *where:*
-  - *$a$ is the anchor,*
-  - *$p$ is the positive example (same class),*
-  - *$n$ is the negative example (different class),*
-  - *$d(x, y)$ is the distance metric (e.g., Euclidean distance),*
-  - *$\alpha$ is the margin that ensures a gap between positive and negative distances.*
+- $$a$$ is the anchor,
+- $$p$$ is the positive example (same class),
+- $$n$$ is the negative example (different class),
+- $$d(x, y)$$ is the distance metric (e.g., Euclidean distance),
+- $$\alpha$$ is the margin that ensures a gap between positive and negative distances.
 
-- The model is trained for 50 epochs using triplet loss. Each batch is split into anchor, positive, and negative examples, and the loss is calculated accordingly.
+The model is trained for 50 epochs using triplet loss. Each batch is split into anchor, positive, and negative examples, and the loss is calculated accordingly.
 
 ### Classifier Fine-Tuning
 - The final fully connected layer is unfrozen, and the model is trained for 5 additional epochs using cross-entropy loss.
