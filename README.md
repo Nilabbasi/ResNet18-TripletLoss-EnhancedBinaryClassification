@@ -1,4 +1,4 @@
-# Fine-tuning ResNet18 with Triplet Loss and Cross-Entropy Loss for Binary Classification on CIFAR-10: Airplanes vs Cars
+# Fine-tuning ResNet18 with [Triplet Loss](https://en.wikipedia.org/wiki/Triplet_loss) and Cross-Entropy Loss for Binary Classification on CIFAR-10: Airplanes vs Cars
 
 ## Introduction
 This project involves fine-tuning a pre-trained ResNet18 model for binary classification tasks using a combination of **[Triplet Loss](https://en.wikipedia.org/wiki/Triplet_loss)** and **Cross-Entropy Loss**. This approach enhances the model's ability to distinguish between two classes effectively.
@@ -27,7 +27,7 @@ In this section, we focus on training the ResNet18 model using **Cross-Entropy L
 - The model is trained for a specified number of epochs using cross-entropy loss, monitoring validation accuracy and loss after each epoch.
 
 ## Section 2: Training with Triplet Loss and Fine-Tuning the Classifier
-In this section, we leverage **Triplet Loss** to enhance feature extraction and fine-tune the ResNet18 model for binary classification.
+In this section, we leverage **[Triplet Loss](https://en.wikipedia.org/wiki/Triplet_loss)** to enhance feature extraction and fine-tune the ResNet18 model for binary classification.
 
 ### Triplet Loss Feature Extraction
 - A custom `TripletLoss` class is defined, and the ResNet18 architecture is modified for feature extraction.
@@ -63,6 +63,13 @@ A custom loss function combines triplet loss and cross-entropy loss to improve f
 ### Training Process
 - The model is trained for 10 epochs, combining both losses to update the model weights effectively.
 - Validation accuracy is recorded after each epoch.
+
+### Total Loss Function
+The total loss function is defined as:
+
+$$
+L_{\text{total}} = L_{\text{triplet}} + L_{\text{cross-entropy}}
+$$
 
 ### Results and Visualization
 - Accuracy and loss plots are generated, providing insights into the model's learning dynamics.
