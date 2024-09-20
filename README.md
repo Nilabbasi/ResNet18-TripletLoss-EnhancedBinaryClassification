@@ -16,6 +16,14 @@ In this section, we focus on training the ResNet18 model using **Cross-Entropy L
 
 ### Cross-Entropy Loss Training
 - The ResNet18 architecture is adjusted for binary classification.
+- The Cross-Entropy Loss is defined as:
+
+  \[
+  L_{CE} = -\frac{1}{N} \sum_{i=1}^{N} \left( y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right)
+  \]
+
+  where \( N \) is the number of samples, \( y_i \) is the true label, and \( \hat{y}_i \) is the predicted probability for class 1.
+  
 - The model is trained for a specified number of epochs using cross-entropy loss, monitoring validation accuracy and loss after each epoch.
 
 ## Section 2: Training with Triplet Loss and Fine-Tuning the Classifier
@@ -23,6 +31,19 @@ In this section, we leverage **Triplet Loss** to enhance feature extraction and 
 
 ### Triplet Loss Feature Extraction
 - A custom `TripletLoss` class is defined, and the ResNet18 architecture is modified for feature extraction.
+- The Triplet Loss is defined as:
+
+  \[
+  L_{triplet} = \max(0, d(a, p) - d(a, n) + \alpha)
+  \]
+
+  where:
+  - \( a \) is the anchor,
+  - \( p \) is the positive example (same class),
+  - \( n \) is the negative example (different class),
+  - \( d(x, y) \) is the distance metric (e.g., Euclidean distance),
+  - \( \alpha \) is the margin that ensures a gap between positive and negative distances.
+
 - The model is trained for 50 epochs using triplet loss. Each batch is split into anchor, positive, and negative examples, and the loss is calculated accordingly.
 
 ### Classifier Fine-Tuning
@@ -66,6 +87,3 @@ print(f"Test Accuracy: {test_accuracy:.4f}")
 The model achieves significant accuracy improvements, indicating the effectiveness of the combined loss functions in enhancing classification performance.
 
 ---
-```
-
-Feel free to modify any sections further if needed!
