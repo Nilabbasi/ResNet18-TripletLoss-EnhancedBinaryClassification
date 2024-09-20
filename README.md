@@ -1,7 +1,7 @@
 # Fine-tuning ResNet18 with Triplet Loss and Cross-Entropy Loss for Binary Classification on CIFAR-10: Airplanes vs Cars
 
 ## Introduction
-This project involves fine-tuning a pre-trained ResNet18 model for binary classification tasks using a combination of **Triplet Loss** and **Cross-Entropy Loss**. This approach enhances the model's ability to distinguish between two classes effectively.
+This project involves fine-tuning a pre-trained ResNet18 model for binary classification tasks using a combination of **[Triplet Loss](https://en.wikipedia.org/wiki/Triplet_loss)** and **Cross-Entropy Loss**. This approach enhances the model's ability to distinguish between two classes effectively.
 
 ## Table of Contents
 1. [Section 1: Training with Cross-Entropy Loss and Fine-Tuning the Classifier](#section-1-training-with-cross-entropy-loss-and-fine-tuning-the-classifier)
@@ -18,10 +18,12 @@ In this section, we focus on training the ResNet18 model using **Cross-Entropy L
 - The ResNet18 architecture is adjusted for binary classification.
 - The Cross-Entropy Loss is defined as:
 
-  $$ L_{CE} = -\frac{1}{N} \sum_{i=1}^{N} \left( y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right) $$
+  $$
+  L_{CE} = -\frac{1}{N} \sum_{i=1}^{N} \left( y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right)
+  $$
 
-  where \( N \) is the number of samples, \( y_i \) is the true label, and \( \hat{y}_i \) is the predicted probability for class 1.
-  
+  *where \( N \) is the number of samples, \( y_i \) is the true label, and \( \hat{y}_i \) is the predicted probability for class 1.*
+
 - The model is trained for a specified number of epochs using cross-entropy loss, monitoring validation accuracy and loss after each epoch.
 
 ## Section 2: Training with Triplet Loss and Fine-Tuning the Classifier
@@ -31,14 +33,16 @@ In this section, we leverage **Triplet Loss** to enhance feature extraction and 
 - A custom `TripletLoss` class is defined, and the ResNet18 architecture is modified for feature extraction.
 - The Triplet Loss is defined as:
 
-  $$ L_{triplet} = \max(0, d(a, p) - d(a, n) + \alpha) $$
+  $$
+  L_{triplet} = \max(0, d(a, p) - d(a, n) + \alpha)
+  $$
 
-  where:
-  - \( a \) is the anchor,
-  - \( p \) is the positive example (same class),
-  - \( n \) is the negative example (different class),
-  - \( d(x, y) \) is the distance metric (e.g., Euclidean distance),
-  - \( \alpha \) is the margin that ensures a gap between positive and negative distances.
+  *where:*
+  - *\( a \) is the anchor,*
+  - *\( p \) is the positive example (same class),*
+  - *\( n \) is the negative example (different class),*
+  - *\( d(x, y) \) is the distance metric (e.g., Euclidean distance),*
+  - *\( \alpha \) is the margin that ensures a gap between positive and negative distances.*
 
 - The model is trained for 50 epochs using triplet loss. Each batch is split into anchor, positive, and negative examples, and the loss is calculated accordingly.
 
