@@ -18,9 +18,7 @@ In this section, we focus on training the ResNet18 model using **Cross-Entropy L
 - The ResNet18 architecture is adjusted for binary classification.
 - The Cross-Entropy Loss is defined as:
 
-  \[
-  L_{CE} = -\frac{1}{N} \sum_{i=1}^{N} \left( y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right)
-  \]
+  $$ L_{CE} = -\frac{1}{N} \sum_{i=1}^{N} \left( y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right) $$
 
   where \( N \) is the number of samples, \( y_i \) is the true label, and \( \hat{y}_i \) is the predicted probability for class 1.
   
@@ -33,9 +31,7 @@ In this section, we leverage **Triplet Loss** to enhance feature extraction and 
 - A custom `TripletLoss` class is defined, and the ResNet18 architecture is modified for feature extraction.
 - The Triplet Loss is defined as:
 
-  \[
-  L_{triplet} = \max(0, d(a, p) - d(a, n) + \alpha)
-  \]
+  $$ L_{triplet} = \max(0, d(a, p) - d(a, n) + \alpha) $$
 
   where:
   - \( a \) is the anchor,
@@ -72,16 +68,6 @@ The trained model is saved to Google Drive for future use, enabling easy reloadi
 
 ## Test Phase
 After training, the model is evaluated on the test dataset. The final test accuracy is computed, demonstrating improved performance due to the effective integration of triplet loss and cross-entropy loss.
-
-```python
-# Example code for training and evaluation
-net3 = models.resnet18(pretrained=True)
-net3.fc = nn.Linear(net3.fc.in_features, 2)
-
-# Training and evaluation code here...
-
-print(f"Test Accuracy: {test_accuracy:.4f}")
-```
 
 ## Results
 The model achieves significant accuracy improvements, indicating the effectiveness of the combined loss functions in enhancing classification performance.
